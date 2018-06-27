@@ -1,1 +1,3 @@
 node_modules
+/lib/db
+/lib/csv
