@@ -46,7 +46,7 @@ flyJS.get('/',
 
         },
 
-        // check for url params
+        // check for query string
         function (req, res, next) {
 
             let jRes = req.app.locals.jRes,
@@ -73,8 +73,37 @@ flyJS.get('/',
 
         },
 
+        // respond to sd and ed query string values
+        function (req, res, next) {
+
+            let jRes = req.app.locals.jRes;
+
+            if (req.query.sd) {
+
+                let sd = req.query.sd,
+                ed = sd;
+
+                if (req.query.ed) {
+
+                    ed = req.query.ed;
+
+                }
+
+                jRes.success = true;
+                jRes.mess = 'data for days ' + sd + ' to ' + ed;
+                res.json(jRes);
+
+            } else {
+
+                next();
+
+            }
+
+        },
+
         // end of line
         function () {
+
             let jRes = req.app.locals.jRes;
 
             jRes.mess = 'end of line sorry';
