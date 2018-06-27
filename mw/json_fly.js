@@ -23,28 +23,65 @@ flyJS.get('/',
         },
 
         // get database
-        function (req, res) {
+        function (req, res, next) {
 
             let jRes = req.app.locals.jRes;
 
             try {
 
+                // try to populate req.db
                 req.db = require(flyJS.get('dir_db'));
 
-                jRes.success = true;
-                jRes.data = req.db;
-                jRes.mess = 'got the database';
-                res.json(jRes);
+                // if all goes well continue
+                next()
 
             } catch (e) {
 
+                // else spit out an error response
                 jRes.mess = 'error getting database';
                 jRes.eMess = e.message;
                 res.json(jRes);
 
             }
 
+        },
+
+        // check for url params
+        function (req, res, next) {
+
+            let jRes = req.app.locals.jRes,
+            qKeys = Object.keys(req.query);
+
+            // if no query string just give stats
+            // not the whole db
+            if (qKeys.length === 0) {
+
+                jRes.success = true;
+                jRes.mess = 'No query string given, so just giving database stats';
+                jRes.data = {
+
+                    daycount: req.db.days.length
+
+                };
+                res.json(jRes);
+
+            } else {
+
+                next();
+
+            }
+
+        },
+
+        // end of line
+        function () {
+            let jRes = req.app.locals.jRes;
+
+            jRes.mess = 'end of line sorry';
+            res.json(jRes);
+
         }
+
     ]);
 
 module.exports = function (options) {
