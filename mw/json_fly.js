@@ -29,10 +29,10 @@ flyJS.get('/',
 
             try {
 
-                let db = require(flyJS.get('dir_db'));
+                req.db = require(flyJS.get('dir_db'));
 
                 jRes.success = true;
-                jRes.data = db;
+                jRes.data = req.db;
                 jRes.mess = 'got the database';
                 res.json(jRes);
 
