@@ -1,74 +1,74 @@
 {
-    "days": [{
-            "date": "1/1/18",
-            "users": "10",
-            "timeStamp": "2018-01-01T05:00:00.000Z",
-            "pages": [{
-                    "Page": "/",
-                    "Pageviews": "1"
-
-                }, {
-                    "Page": "/2017/04/10/nodejs-jimp/",
-                    "Pageviews": "2"
-
-                }, {
-                    "Page": "/2017/04/17/hexo-theme-start/",
-                    "Pageviews": "1"
-
-                }, {
-                    "Page": "/2017/05/02/hexo-sitemap-automation/",
-                    "Pageviews": "1"
-
-                }, {
-                    "Page": "/2017/09/14/lodash-find/",
-                    "Pageviews": "2"
-
-                }, {
-                    "Page": "/2017/11/28/nodejs-cheerio/",
-                    "Pageviews": "1"
-
-                }, {
-                    "Page": "/2017/11/28/nodejs-glob/",
-                    "Pageviews": "2"
-
-                }, {
-                    "Page": "/2017/12/01/canvas-chartjs/",
-                    "Pageviews": "1"
-
-                }
-
-            ]
-        }, {
-            "date": "1/2/18",
-            "users": "12",
-            "timeStamp": "2018-02-01T05:00:00.000Z",
-            "pages": [{
-                    "Page": "/",
-                    "Pageviews": "1"
-
-                }, {
-                    "Page": "/2017/04/10/nodejs-jimp/",
-                    "Pageviews": "4"
-
-                }, {
-                    "Page": "/2017/05/02/hexo-sitemap-automation/",
-                    "Pageviews": "1"
-
-                }, {
-                    "Page": "/2017/09/14/lodash-find/",
-                    "Pageviews": "3"
-
-                }, {
-                    "Page": "/2017/11/28/nodejs-glob/",
-                    "Pageviews": "2"
-
-                }, {
-                    "Page": "/2017/12/01/canvas-chartjs/",
-                    "Pageviews": "1"
-
-                }
-
-            ]
+  "days": [
+    {
+      "date": "1/1/18",
+      "users": "10",
+      "timeStamp": "2018-01-01T05:00:00.000Z",
+      "pages": [
+        {
+          "Page": "/",
+          "Pageviews": "1"
+        },
+        {
+          "Page": "/2017/04/10/nodejs-jimp/",
+          "Pageviews": "2"
+        },
+        {
+          "Page": "/2017/04/17/hexo-theme-start/",
+          "Pageviews": "1"
+        },
+        {
+          "Page": "/2017/05/02/hexo-sitemap-automation/",
+          "Pageviews": "1"
+        },
+        {
+          "Page": "/2017/09/14/lodash-find/",
+          "Pageviews": "2"
+        },
+        {
+          "Page": "/2017/11/28/nodejs-cheerio/",
+          "Pageviews": "1"
+        },
+        {
+          "Page": "/2017/11/28/nodejs-glob/",
+          "Pageviews": "2"
+        },
+        {
+          "Page": "/2017/12/01/canvas-chartjs/",
+          "Pageviews": "1"
         }
-    ]
+      ]
+    },
+    {
+      "date": "1/2/18",
+      "users": "12",
+      "timeStamp": "2018-02-01T05:00:00.000Z",
+      "pages": [
+        {
+          "Page": "/",
+          "Pageviews": "1"
+        },
+        {
+          "Page": "/2017/04/10/nodejs-jimp/",
+          "Pageviews": "4"
+        },
+        {
+          "Page": "/2017/05/02/hexo-sitemap-automation/",
+          "Pageviews": "1"
+        },
+        {
+          "Page": "/2017/09/14/lodash-find/",
+          "Pageviews": "3"
+        },
+        {
+          "Page": "/2017/11/28/nodejs-glob/",
+          "Pageviews": "2"
+        },
+        {
+          "Page": "/2017/12/01/canvas-chartjs/",
+          "Pageviews": "1"
+        }
+      ]
+    }
+  ]
 }

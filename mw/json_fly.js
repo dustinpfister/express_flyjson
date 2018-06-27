@@ -111,9 +111,25 @@ flyJS.get('/',
 
                 }
 
-                jRes.success = true;
-                jRes.mess = 'data for days ' + sd + ' to ' + ed;
-                res.json(jRes);
+                req.db.get('days')
+                .filter((day) => {
+
+                        return day.date === '1/2/18';
+
+                    })
+                .sortBy('date').write().then((data) => {
+
+                    jRes.success = true;
+                    jRes.mess = 'data for days ' + sd + ' to ' + ed;
+                    jRes.data = data;
+                    res.json(jRes);
+
+                }).catch ((e) => {
+
+                    jRes.mess = 'error';
+                    res.json(jRes);
+
+                });
 
             } else {
 
