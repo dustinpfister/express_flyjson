@@ -1,6 +1,14 @@
 
 let express = require('express'),
+FileAsync = require('lowdb/adapters/FileAsync'),
+low = require('lowdb'),
 flyJS = express();
+
+// adapter = new FileAsync(path_lists);
+
+// low(adapter);
+
+// db.defaults({days:[]});
 
 flyJS.get('/',
 
@@ -30,10 +38,24 @@ flyJS.get('/',
             try {
 
                 // try to populate req.db
-                req.db = require(flyJS.get('path_db'));
+                //req.db = require(flyJS.get('path_db'));
 
-                // if all goes well continue
-                next()
+                let adapt = new FileAsync(flyJS.get('path_db'));
+
+                low(adapt).then((db) => {
+
+                    // if all goes well continue
+                    req.db = db;
+                    next();
+
+                }).catch ((e) => {
+
+                    // else spit out an error response
+                    jRes.mess = 'error getting database';
+                    jRes.eMess = e.message;
+                    res.json(jRes);
+
+                });
 
             } catch (e) {
 
@@ -60,7 +82,7 @@ flyJS.get('/',
                 jRes.mess = 'No query string given, so just giving database stats';
                 jRes.data = {
 
-                    daycount: req.db.days.length
+                    dayCount: req.db.get('days').value().length
 
                 };
                 res.json(jRes);
