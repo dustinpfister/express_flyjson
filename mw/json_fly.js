@@ -102,21 +102,27 @@ flyJS.get('/',
 
             if (req.query.sd) {
 
-                let sd = req.query.sd,
+                let sd = req.query.sd.split('/'),
                 ed = sd;
 
                 if (req.query.ed) {
 
-                    ed = req.query.ed;
+                    ed = req.query.ed.split('/');
 
                 }
+
+                sd = new Date('20' + sd[2], sd[1] - 1, sd[0]);
+                ed = new Date('20' + ed[2], ed[1] - 1, ed[0]);
 
                 req.db.get('days')
                 .filter((day) => {
 
-                        return day.date === '1/2/18';
+                    // filter by date
+                    let date = new Date(day.timeStamp);
+                    return date >= sd && date <= ed;
 
-                    })
+
+                })
                 .sortBy('date').write().then((data) => {
 
                     jRes.success = true;
