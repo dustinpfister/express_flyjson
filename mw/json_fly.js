@@ -1,14 +1,19 @@
 
-module.exports = function (optons) {
+let express = require('express'),
+flyJS = express();
 
-    return function (req, res) {
+flyJS.get('/', function (req,res) {
 
-        res.json({
+    let db = require(flyJS.get('dir_db'));
 
-            mess: 'this is some json'
+    res.json(db);
 
-        });
+});
 
-    }
+module.exports = function (options) {
+
+    flyJS.set('dir_db', options.dir_db || 'db.json');
+
+    return flyJS;
 
 };
