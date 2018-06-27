@@ -2,13 +2,50 @@
 let express = require('express'),
 flyJS = express();
 
-flyJS.get('/', function (req,res) {
+flyJS.get('/',
 
-    let db = require(flyJS.get('dir_db'));
+    [
 
-    res.json(db);
+        // set standard response object defaults
+        function (req, res, next) {
 
-});
+            req.app.locals.jRes = {
+
+                success: false,
+                mess: '',
+                eMess: '',
+                data: {}
+
+            }
+
+            next();
+
+        },
+
+        // get database
+        function (req, res) {
+
+            let jRes = req.app.locals.jRes;
+
+            try {
+
+                let db = require(flyJS.get('dir_db'));
+
+                jRes.success = true;
+                jRes.data = db;
+                jRes.mess = 'got the database';
+                res.json(jRes);
+
+            } catch (e) {
+
+                jRes.mess = 'error getting database';
+                jRes.eMess = e.message;
+                res.json(jRes);
+
+            }
+
+        }
+    ]);
 
 module.exports = function (options) {
 
