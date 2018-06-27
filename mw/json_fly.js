@@ -30,7 +30,7 @@ flyJS.get('/',
             try {
 
                 // try to populate req.db
-                req.db = require(flyJS.get('dir_db'));
+                req.db = require(flyJS.get('path_db'));
 
                 // if all goes well continue
                 next()
@@ -115,7 +115,7 @@ flyJS.get('/',
 
 module.exports = function (options) {
 
-    flyJS.set('dir_db', options.dir_db || 'db.json');
+    flyJS.set('path_db', options.path_db || 'db.json');
 
     return flyJS;
 
