@@ -30,3 +30,88 @@ I end up with something like this.
 ```
 
 ## csv_ga_import
+
+This lib uses [csvtojson](https://www.npmjs.com/package/csvtojson) along with many other dependencies to parse csv files that should be in the main /csv folder into a json database at /db/db.json.
+
+Run it with npm like this
+```
+$ npm run-script build
+```
+
+Or directly from the root dir by calling the main build.js file with node
+```
+$ node build.js
+```
+
+If you want to use it elsewhere do something like this:
+
+```js
+require('./lib/csv_ga_import/index')({
+ 
+    dir_csv: path.join(__dirname, 'csv'),
+    dir_db: path.join(__dirname, 'db')
+ 
+}).then((a) => {
+ 
+    // run rest of app here
+ 
+}).catch ((e) => {
+ 
+    console.log(e.message);
+ 
+});
+```
+
+### Writing new report types
+
+
+```js
+        [
+
+            // type 'day-users'
+            {
+                reportType: 'day-users', // name of the report type
+                csvHeaders: ['Day Index', 'Users'], // the headers in csv that must be present
+
+                // set data in json by the maped value
+                setBy: 'date',
+
+                // map what headers to what (corresponds with csvHeaders)
+                map: ['date', 'users'],
+
+                // test the sanity of cells (corresponds with csvHeaders)
+                cellTest: [
+
+                    // 'Day Index' cell data should follow this pattern
+                    function (cell) {
+
+                        return !!cell.match(/\d+\/\d+\/\d+/);
+
+                    },
+
+                    // users cell should be a Number greater than or equal to zero
+                    function (cell) {
+
+                        return Number(cell) >= 0;
+
+                    }
+
+                ],
+
+                forObj: function () {
+
+                    let str = this.date.split('/');
+
+                    this.timeStamp = new Date('20' + str[2], str[0] - 1, str[1]);
+
+                    if (!this.pages) {
+
+                        this.pages = [];
+
+                    }
+
+                }
+
+            }
+        ]
+```
