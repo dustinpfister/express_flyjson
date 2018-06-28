@@ -111,16 +111,38 @@ flyJS.get('/',
 
                 }
 
-                sd = new Date('20' + sd[2], sd[1] - 1, sd[0]);
-                ed = new Date('20' + ed[2], ed[1] - 1, ed[0]);
+                sd = new Date('20' + sd[2], sd[0] - 1, sd[1]);
+                ed = new Date('20' + ed[2], ed[0] - 1, ed[1]);
 
                 req.db.get('days')
                 .filter((day) => {
 
                     // filter by date
                     let date = new Date(day.timeStamp);
-                    return date >= sd && date <= ed;
 
+                    if (date >= sd && date <= ed) {
+
+                        console.log(date);
+
+                    } else {
+
+                        //console.log(date.getFullYear());
+
+                        if (date.getFullYear() == '2018') {
+
+                            console.log({
+
+                                date: date,
+                                sd: sd,
+                                ed: ed
+
+                            });
+
+                        }
+
+                    }
+
+                    return date >= sd && date <= ed;
 
                 })
                 .sortBy('date').write().then((data) => {
