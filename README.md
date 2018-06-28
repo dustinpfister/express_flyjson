@@ -64,54 +64,55 @@ require('./lib/csv_ga_import/index')({
 
 ### Writing new report types
 
+This will likely change.
 
 ```js
-        [
+[
 
-            // type 'day-users'
-            {
-                reportType: 'day-users', // name of the report type
-                csvHeaders: ['Day Index', 'Users'], // the headers in csv that must be present
+    // type 'day-users'
+    {
+        reportType: 'day-users', // name of the report type
+        csvHeaders: ['Day Index', 'Users'], // the headers in csv that must be present
 
-                // set data in json by the maped value
-                setBy: 'date',
+        // set data in json by the maped value
+        setBy: 'date',
 
-                // map what headers to what (corresponds with csvHeaders)
-                map: ['date', 'users'],
+        // map what headers to what (corresponds with csvHeaders)
+        map: ['date', 'users'],
 
-                // test the sanity of cells (corresponds with csvHeaders)
-                cellTest: [
+        // test the sanity of cells (corresponds with csvHeaders)
+        cellTest: [
 
-                    // 'Day Index' cell data should follow this pattern
-                    function (cell) {
+            // 'Day Index' cell data should follow this pattern
+            function (cell) {
 
-                        return !!cell.match(/\d+\/\d+\/\d+/);
+                return !!cell.match(/\d+\/\d+\/\d+/);
 
-                    },
+            },
 
-                    // users cell should be a Number greater than or equal to zero
-                    function (cell) {
+            // users cell should be a Number greater than or equal to zero
+            function (cell) {
 
-                        return Number(cell) >= 0;
-
-                    }
-
-                ],
-
-                forObj: function () {
-
-                    let str = this.date.split('/');
-
-                    this.timeStamp = new Date('20' + str[2], str[0] - 1, str[1]);
-
-                    if (!this.pages) {
-
-                        this.pages = [];
-
-                    }
-
-                }
+                return Number(cell) >= 0;
 
             }
-        ]
+
+        ],
+
+        forObj: function () {
+
+            let str = this.date.split('/');
+
+            this.timeStamp = new Date('20' + str[2], str[0] - 1, str[1]);
+
+            if (!this.pages) {
+
+                this.pages = [];
+
+            }
+
+        }
+
+    }
+]
 ```
