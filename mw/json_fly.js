@@ -120,27 +120,6 @@ flyJS.get('/',
                     // filter by date
                     let date = new Date(day.timeStamp);
 
-                    if (date >= sd && date <= ed) {
-
-                        console.log(date);
-
-                    } else {
-
-                        //console.log(date.getFullYear());
-
-                        if (date.getFullYear() == '2018') {
-
-                            console.log({
-
-                                date: date,
-                                sd: sd,
-                                ed: ed
-
-                            });
-
-                        }
-
-                    }
 
                     return date >= sd && date <= ed;
 
@@ -148,7 +127,9 @@ flyJS.get('/',
                 .sortBy('date').write().then((data) => {
 
                     jRes.success = true;
-                    jRes.mess = 'data for days ' + sd + ' to ' + ed;
+                    jRes.mess = 'data for days ' + 
+					    (sd.getMonth()+1) + '/'+sd.getDay() + '/'+ sd.getFullYear() + ' to ' +
+						(ed.getMonth()+1) + '/'+ed.getDay() + '/'+ ed.getFullYear()
                     jRes.data = data;
                     res.json(jRes);
 
