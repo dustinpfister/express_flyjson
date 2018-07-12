@@ -116,3 +116,14 @@ This will likely change.
     }
 ]
 ```
+
+## Making queries
+
+When the middleware is set up making a query is done by just simply making a get request to the path at which the middleware is mounted.
+
+so if running the project locally, and having the middleware mounted at a middeware mounted at a path called flyjson then making a quiery would begin by just making a get request to that path.
+```
+http://localhost:8080/flyjson
+```
+
+This will result in a status report.
